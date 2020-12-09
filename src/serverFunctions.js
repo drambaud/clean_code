@@ -37,7 +37,12 @@ module.exports = {
                     })
         }
     },
-
+   /**
+     * Fonction qui s'occupe de la validation de l'id de traitement
+     * @param {Object} req La requête du client
+     * @param {Object} res La réponse du serveur
+     * @returns {Void} Rien à retourner
+     */
     validation : async (req, res) => {
         if(!treatment.stringIsNotNull(req.body.user) || !treatment.numberIsNotNull(req.body.scanner) || !treatment.stringIsNotNull(req.body.date) || !treatment.stringIsNotNull(req.body.idtraitement)) {
             return res.status(400).json({
@@ -47,14 +52,30 @@ module.exports = {
             })
         try {
             var idTraitement = treatment.decode(req.body.idtraitement);
-            return res.status(200).json({
-                status:"Ok",
-                request: req.body.idtraitement,
-                result "Validation"
-            })
+            if(idTraitement == req.body.idtraitement) {
+                return res.status(200).json({
+                    status:"Ok",
+                    request: req.body.idtraitement,
+                    result "Validation"
+                })
+            }
+        } catch(error) {
+            if(error instanceof TypeError)
+                return res.status(400).json({
+                    status:"Failed",
+                    request: req.body.idtraitement,
+                    result: "No validation"
+                })
+            else
+                return res.status(500).json({
+                    status:"Failed"
+                    request: req.body.idtraitement,
+                    result: "No validation"
+                })
         }
         }
-    }
+    },
+
 
 
     /**
