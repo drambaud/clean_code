@@ -1,0 +1,16 @@
+{
+  "name": "api_tp_f2",
+  "version": "1.0.0",
+  "description": "api for clean code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dylan Rambaud",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1"
+  }
+}
